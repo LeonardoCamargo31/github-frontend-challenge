@@ -1,13 +1,10 @@
 import { render, screen, fireEvent, act } from '@testing-library/react'
-import Login from './login'
 import LocalStorageHelper from '../../utils/localStorageHelper'
 import { BrowserRouter, Switch } from 'react-router-dom'
-
-import IRequestUser, {
-  ResponseRequestUser
-} from '../../domain/useCases/requestUser'
+import { IGetToken, ResponseGetToken } from '../../domain/service/getToken'
 import { User } from '../../domain/entities/user'
 import { Token } from '../../domain/entities/token'
+import Login from './login'
 
 const makeFakeToken: Token = {
   id: 1,
@@ -27,9 +24,9 @@ const makeFakeUser: User = {
   updated_at: '2021-09-05T14:16:17.266-03:00'
 }
 
-const makeRequestUser = (): IRequestUser => {
-  class RequestUserStub implements IRequestUser {
-    async handler(): Promise<ResponseRequestUser> {
+const makeGetTokenService = (): IGetToken => {
+  class GetTokenStub implements IGetToken {
+    async handler(): Promise<ResponseGetToken> {
       return {
         data: { token: makeFakeToken, user: makeFakeUser },
         success: true,
@@ -37,15 +34,15 @@ const makeRequestUser = (): IRequestUser => {
       }
     }
   }
-  return new RequestUserStub()
+  return new GetTokenStub()
 }
 
 const setup = () => {
-  const requestUser = makeRequestUser()
+  const getTokenService = makeGetTokenService()
   render(
     <BrowserRouter>
       <Switch>
-        <Login requestUser={requestUser} />
+        <Login getTokenService={getTokenService} />
       </Switch>
     </BrowserRouter>
   )
@@ -53,13 +50,18 @@ const setup = () => {
   const input = screen.getByLabelText('Usuário') as HTMLInputElement
   const button = screen.getByText('Entrar')
   const messageInput = screen.getByRole('alert') as HTMLLabelElement
+
   return {
-    requestUser,
+    getTokenService,
     input,
     button,
     messageInput
   }
 }
+
+beforeEach(() => {
+  LocalStorageHelper.removeUserLogged()
+})
 
 test('should return error message, if username is empty', async () => {
   const { button, messageInput } = setup()
@@ -70,9 +72,9 @@ test('should return error message, if username is empty', async () => {
 })
 
 test('should return error message, if user not found', async () => {
-  const { input, button, messageInput, requestUser } = setup()
+  const { input, button, messageInput, getTokenService } = setup()
 
-  jest.spyOn(requestUser, 'handler').mockImplementationOnce((): any => {
+  jest.spyOn(getTokenService, 'handler').mockImplementationOnce((): any => {
     return { success: false, message: 'user not found' }
   })
 
@@ -85,7 +87,7 @@ test('should return error message, if user not found', async () => {
   expect(messageInput.textContent).toBe('Usuário não encontrado')
 })
 
-test('should return error message, if user not found', async () => {
+test('should save user to local storage', async () => {
   const { input, button } = setup()
 
   fireEvent.change(input, { target: { value: 'any_username' } })

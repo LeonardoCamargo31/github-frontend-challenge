@@ -1,7 +1,7 @@
 import { User } from '../entities/user'
 import { Token } from '../entities/token'
 
-export type ResponseRequestUser = {
+export type ResponseGetToken = {
   success: boolean
   message: string
   data?: {
@@ -10,6 +10,6 @@ export type ResponseRequestUser = {
   }
 }
 
-export default interface IRequestUser {
-  handler: (username: string) => Promise<ResponseRequestUser>
+export interface IGetToken {
+  handler: (username: string) => Promise<ResponseGetToken>
 }

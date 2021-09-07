@@ -1,10 +1,8 @@
 import axios from '../utils/axios'
-import IRequestUser, {
-  ResponseRequestUser
-} from '../domain/useCases/requestUser'
+import { IGetToken, ResponseGetToken } from '../domain/service/getToken'
 
-export default class RequestUser implements IRequestUser {
-  async handler(username: string): Promise<ResponseRequestUser> {
+class GetTokenService implements IGetToken {
+  async handler(username: string): Promise<ResponseGetToken> {
     return axios
       .post('token', { username })
       .then((response) => {
@@ -16,3 +14,5 @@ export default class RequestUser implements IRequestUser {
       })
   }
 }
+
+export default new GetTokenService()

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import IRequestUser from '../../domain/useCases/requestUser'
+import { IGetToken } from '../../domain/service/getToken'
 import { Redirect } from 'react-router-dom'
 import LocalStorageHelper from '../../utils/localStorageHelper'
 
@@ -9,10 +9,10 @@ const initialInputUsername = {
 }
 
 type LoginProps = {
-  requestUser: IRequestUser
+  getTokenService: IGetToken
 }
 
-function Login({ requestUser }: LoginProps) {
+function Login({ getTokenService }: LoginProps) {
   const [username, setUsername] = useState(initialInputUsername)
   const [redirect, setRedirect] = useState(false)
 
@@ -28,7 +28,7 @@ function Login({ requestUser }: LoginProps) {
       return
     }
 
-    const response = await requestUser.handler(username.value)
+    const response = await getTokenService.handler(username.value)
     if (!response.success || !response.data) {
       setUsername({ ...username, error: 'Usuário não encontrado' })
       return

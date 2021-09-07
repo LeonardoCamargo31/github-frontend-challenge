@@ -8,4 +8,7 @@ export type User = {
   name: string
   updated_at: string
   username: string
+  countRepositories?: string
+  countFollowers?: string
+  countFollowing?: string
 }

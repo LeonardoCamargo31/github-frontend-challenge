@@ -1,19 +1,27 @@
 import React from 'react'
 import { BrowserRouter, Switch } from 'react-router-dom'
 import Login from './pages/login/login'
-import LoginLayout from './layout/loginLayout'
+import LoginLayoutRoute from './layout/loginLayout/loginLayout'
+import LoggedLayoutRoute from './layout/loggedLayout/loggedLayout'
+import Main from './pages/main/main'
 
-import RequestUser from './useCases/requestUser'
-const requestUser = new RequestUser()
+import GetTokenService from './service/getToken'
+import GetUserService from './service/getUser'
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <LoginLayout
+        <LoginLayoutRoute
           path="/login"
           component={Login}
-          requestUser={requestUser}
+          getTokenService={GetTokenService}
+        />
+        <LoggedLayoutRoute
+          path="/"
+          exact
+          component={Main}
+          getUserService={GetUserService}
         />
       </Switch>
     </BrowserRouter>
