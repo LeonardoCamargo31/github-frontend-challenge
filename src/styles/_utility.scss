@@ -26,3 +26,15 @@
     width: 100%;
   }
 }
+
+.u-main {
+  position: relative;
+}
+
+.u-header-title {
+  color: $color-white;
+  font-size: 1.625rem;
+  margin-bottom: 0.875rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}

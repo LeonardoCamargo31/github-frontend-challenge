@@ -1,0 +1,25 @@
+.c-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.188rem 0rem;
+
+  &__username {
+    font-weight: 700;
+    font-size: 1.063rem;
+  }
+
+  &__logout {
+    font-weight: 300;
+    font-size: 1.063rem;
+    display: flex;
+    align-items: center;
+
+    span {
+      display: flex;
+      align-items: center;
+      color: #D03434;
+      margin-left: 0.75rem;
+    }
+  }
+}

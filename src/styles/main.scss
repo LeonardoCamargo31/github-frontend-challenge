@@ -21,7 +21,14 @@ html {
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   font-weight: 400;
-  background-color: $color-gray
+  background-color: $color-gray;
+  color: $color-white;
+}
+
+p {
+  font-weight: 300;
+  line-height: 1.5rem;
+  font-size: 1.125rem;
 }
 
 
@@ -37,6 +44,10 @@ body {
 @import '../components/button/button.scss';
 @import '../components/input/input.scss';
 @import '../components/logo/logo.scss';
+@import '../components/avatar/avatar.scss';
+@import '../components/menu/menu.scss';
+@import '../components/navbar/navbar.scss';
+@import '../components/stats/stats.scss';
 
 /** utility **/
 @import './utility';

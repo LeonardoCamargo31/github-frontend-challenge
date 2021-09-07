@@ -1,0 +1,29 @@
+.c-navbar {
+  background-color: $color-white;
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.938rem 0;
+  }
+
+  &__item {
+    color:#3E3E3E;
+    font-size: 0.938rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    span {
+      margin-bottom: 0.25rem;
+      display: flex;
+      justify-content: center;
+      font-size: 1.625rem;
+    }
+  }
+}
