@@ -1,0 +1,29 @@
+.c-input {
+  width: 100%;
+  position: relative;
+  height: 3.375rem;
+
+  span {
+    position: absolute;
+    right: 1.25rem;
+    top: 1.25rem;
+    font-size: 0.875rem;
+    color:#EB2D2D
+  }
+
+  input {
+    width: 100%;
+    height: calc(100% - 2px);
+    padding: 0;
+    margin: 0;
+    border: 1px solid rgba(229, 229, 229, 1);
+    font-size: 1.25rem;
+    border-radius: 0.4rem;
+
+    &::placeholder {
+      color: #535353;
+      font-weight: 300;
+      padding: 0 1.25rem;
+    }
+  }
+}

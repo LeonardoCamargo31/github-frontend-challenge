@@ -1,0 +1,30 @@
+.c-button {
+  height: 3.375rem;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.11);
+  border-radius: 0.4rem;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s ease-in-out 0s;
+  width: 100%;
+  text-transform: uppercase;
+
+  span {
+    height: 1.25rem;
+    margin-left: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  &--primary {
+    color: $color-black;
+    background-color: $color-yellow;
+
+    &:hover {
+      background: $color-yellow-hover;
+    }
+  }
+}

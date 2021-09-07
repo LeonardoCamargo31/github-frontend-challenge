@@ -1,0 +1,42 @@
+/** reset **/
+@import 'reset';
+
+$color-yellow:rgb(255, 206, 0);
+$color-yellow-hover:rgba(255, 189, 0, 1);
+$color-black:rgba(3, 2, 2, 1);
+$color-gray:rgba(41, 41, 41, 1);
+$color-white:rgb(255, 255, 255);
+
+$grid-breakpoints-xs: 0;
+$grid-breakpoints-sm: 576px;
+$grid-breakpoints-md: 768px;
+$grid-breakpoints-lg: 992px;
+$grid-breakpoints-xl: 1200px;
+
+html {
+  font-size: 16px;
+}
+
+/** settings **/
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 400;
+  background-color: $color-gray
+}
+
+
+/** tools **/
+
+/** generic **/
+
+/** objects **/
+
+/** containers **/
+
+/** components **/
+@import '../components/button/button.scss';
+@import '../components/input/input.scss';
+@import '../components/logo/logo.scss';
+
+/** utility **/
+@import './utility';

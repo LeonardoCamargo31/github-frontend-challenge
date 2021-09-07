@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { IGetToken } from '../../domain/service/getToken'
 import { Redirect } from 'react-router-dom'
 import LocalStorageHelper from '../../utils/localStorageHelper'
+import Button, { TypesButton } from '../../components/button/button'
+import Input from '../../components/input/input'
+import Logo from '../../components/logo/logo'
+import { Grid, Col, Row } from 'react-flexbox-grid'
 
 const initialInputUsername = {
   value: '',
@@ -42,26 +46,27 @@ function Login({ getTokenService }: LoginProps) {
     return <Redirect to="/" />
   } else {
     return (
-      <div className="App">
-        <img src="" alt="" />
-        <form>
-          <div className="c-input">
-            <label htmlFor="username">Usuário</label>
-            <input
-              id="username"
-              type="text"
-              placeholder="Usuário"
-              onChange={handleInputUsername}
-              value={username.value}
-              aria-describedby="username_error"
-            />
-            <span id="username_error" role="alert">
-              {username.error}
-            </span>
-          </div>
+      <div className="u-login">
+        <Grid className="u-login__wrapper">
+          <Logo />
+          <form>
+            <div className="u-mb-20">
+              <Input
+                fieldName="username"
+                onChange={handleInputUsername}
+                value={username.value}
+                messageError={username.error}
+                placeholder="Usuário"
+              />
+            </div>
 
-          <button onClick={handleSubmit}>Entrar</button>
-        </form>
+            <Button
+              text={'Entrar'}
+              type={TypesButton.primary}
+              onClick={handleSubmit}
+            />
+          </form>
+        </Grid>
       </div>
     )
   }
