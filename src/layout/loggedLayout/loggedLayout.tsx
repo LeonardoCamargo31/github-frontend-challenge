@@ -1,9 +1,18 @@
-import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import LocalStorageHelper from '../../utils/localStorageHelper'
+import Navbar from '../../components/navbar/navbar'
+import Menu from '../../components/menu/menu'
 
 const LoggedLayout = ({ children }: any) => {
-  return <div>{children}</div>
+  const data = LocalStorageHelper.getUserLogged()
+
+  return (
+    <div>
+      <Menu username={data.user.username} />
+      {children}
+      <Navbar />
+    </div>
+  )
 }
 
 const LoggedLayoutRoute = ({ component: Component, ...rest }: any) => {

@@ -1,37 +1,37 @@
 import { FaHome, FaGithub, FaUsers } from 'react-icons/fa'
-
+import { NavLink } from 'react-router-dom'
 import { Grid } from 'react-flexbox-grid'
 
 const Navbar = () => (
   <div className="c-navbar">
     <Grid className="c-navbar__wrapper">
-      <div className="c-navbar__item">
+      <NavLink to="/" exact={true} className="c-navbar__item">
         <span>
           <FaHome />
         </span>
         Home
-      </div>
+      </NavLink>
 
-      <div className="c-navbar__item">
+      <NavLink to="/repositories" exact={true} className="c-navbar__item">
         <span>
           <FaGithub />
         </span>
         Repos
-      </div>
+      </NavLink>
 
-      <div className="c-navbar__item">
+      <NavLink to="/followers" exact={true} className="c-navbar__item">
         <span>
           <FaUsers />
         </span>
         Seguidores
-      </div>
+      </NavLink>
 
-      <div className="c-navbar__item">
+      <NavLink to="/following" exact={true} className="c-navbar__item">
         <span>
           <FaUsers />
         </span>
         Seguindo
-      </div>
+      </NavLink>
     </Grid>
   </div>
 )
